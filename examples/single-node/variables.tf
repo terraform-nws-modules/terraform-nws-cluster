@@ -1,5 +1,10 @@
-variable "name" {
-  description = "Your subnet name"
+variable "vpc-name" {
+  description = "Your VPC name"
+  type        = string
+}
+
+variable "subnet-name" {
+  description = "Your private subnet name"
   type        = string
 }
 

@@ -13,7 +13,8 @@ terraform {
 module "cluster" {
   source = "../../src"
 
-  name   = var.name
-  cidr   = var.cidr
-  domain = var.domain
+  vpc-name    = var.vpc-name
+  subnet-name = var.subnet-name
+  cidr        = var.cidr
+  domain      = var.domain
 }

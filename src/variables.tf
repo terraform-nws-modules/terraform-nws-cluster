@@ -1,5 +1,10 @@
-variable "name" {
+variable "vpc-name" {
   description = "Your VPC name"
+  type        = string
+}
+
+variable "subnet-name" {
+  description = "Your private subnet name"
   type        = string
 }
 
@@ -12,4 +17,3 @@ variable "domain" {
   description = "Your VPC network domain"
   type        = string
 }
-
