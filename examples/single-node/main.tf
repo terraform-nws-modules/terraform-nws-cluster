@@ -16,7 +16,8 @@ module "cluster" {
   vpc_name            = var.vpc_name
   subnet_name         = var.subnet_name
   instance_name       = var.instance_name
-  cidr                = var.cidr
+  vpc_cidr            = var.vpc_cidr
+  subnet_cidr         = var.subnet_cidr
   domain              = var.domain
   instance_private_ip = var.instance_private_ip
   instance_type       = var.instance_type

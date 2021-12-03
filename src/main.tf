@@ -13,7 +13,7 @@ module "vpc" {
   source = "github.com/terraform-nws-modules/terraform-nws-vpc/src"
 
   name   = var.vpc_name
-  cidr   = var.cidr
+  cidr   = var.vpc_cidr
   domain = var.domain
 }
 
@@ -21,7 +21,7 @@ module "subnet" {
   source = "github.com/terraform-nws-modules/terraform-nws-subnet/src"
 
   name   = var.subnet_name
-  cidr   = var.cidr
+  cidr   = var.subnet_cidr
   domain = var.domain
   vpc_id = module.vpc.vpc_id
 }

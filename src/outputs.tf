@@ -10,12 +10,12 @@ output "vpc_id" {
 
 output "subnet_id" {
   description = "Private subnet ID"
-  value       = module.subnet.id
+  value       = module.subnet[*].id
 }
 
 output "domain" {
   description = "Private subnet domain"
-  value       = module.subnet.domain
+  value       = module.subnet[*].domain
 }
 
 output "instance_name" {

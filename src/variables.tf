@@ -5,16 +5,21 @@ variable "vpc_name" {
 
 variable "subnet_name" {
   description = "Your private subnet name"
-  type        = string
+  type        = list(string)
 }
 
 variable "instance_name" {
   type = list(string)
 }
 
-variable "cidr" {
+variable "vpc_cidr" {
   description = "Your VPC full CIDR"
   type        = string
+}
+
+variable "subnet_cidr" {
+  description = "Your subnets CIDR"
+  type        = list(string)
 }
 
 variable "domain" {
