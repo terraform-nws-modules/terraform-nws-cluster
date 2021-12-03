@@ -12,7 +12,7 @@ terraform {
 module "vpc" {
   source = "github.com/terraform-nws-modules/terraform-nws-vpc/src"
 
-  name   = var.vpc-name
+  name   = var.vpc_name
   cidr   = var.cidr
   domain = var.domain
 }
@@ -20,7 +20,7 @@ module "vpc" {
 module "subnet" {
   source = "github.com/terraform-nws-modules/terraform-nws-subnet/src"
 
-  name   = var.subnet-name
+  name   = var.subnet_name
   cidr   = var.cidr
   domain = var.domain
   vpc_id = module.vpc.vpc_id
@@ -30,8 +30,8 @@ module "instance" {
   source = "github.com/terraform-nws-modules/terraform-nws-instance/src"
 
   network_id     = module.subnet.id
-  ip             = var.instance-private-ip
-  name           = var.instance-name
+  ip             = var.instance_private_ip
+  name           = var.instance_name
   instance_type  = var.instance_type
   template       = var.template
   root_disk_size = var.root_disk_size

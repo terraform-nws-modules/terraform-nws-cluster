@@ -1,14 +1,14 @@
-variable "vpc-name" {
+variable "vpc_name" {
   description = "Your VPC name"
   type        = string
 }
 
-variable "subnet-name" {
+variable "subnet_name" {
   description = "Your private subnet name"
   type        = string
 }
 
-variable "instance-name" {
+variable "instance_name" {
   type = list(string)
 }
 
@@ -22,7 +22,7 @@ variable "domain" {
   type        = string
 }
 
-variable "instance-private-ip" {
+variable "instance_private_ip" {
   type = list(string)
 }
 
