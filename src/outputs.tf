@@ -17,3 +17,13 @@ output "domain" {
   description = "Private subnet domain"
   value       = module.subnet.domain
 }
+
+output "instance_name" {
+  description = "Instance names"
+  value       = module.instance.name
+}
+
+output "instance_id" {
+  description = "Instance IDs"
+  value       = module.instance.id
+}

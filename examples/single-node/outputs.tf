@@ -17,3 +17,13 @@ output "domain" {
   description = "Network domain of the new subnet"
   value       = module.cluster.domain
 }
+
+output "instance_name" {
+  description = "Instance names"
+  value       = module.cluster.instance_name
+}
+
+output "instance_id" {
+  description = "Instance IDs"
+  value       = module.cluster.instance_id
+}
