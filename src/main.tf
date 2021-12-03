@@ -25,3 +25,14 @@ module "subnet" {
   domain = var.domain
   vpc_id = module.vpc.vpc_id
 }
+
+module "instance" {
+  source = "github.com/terraform-nws-modules/terraform-nws-instance/src"
+
+  network_id     = module.subnet.id
+  ip             = var.instance-private-ip
+  name           = var.instance-name
+  instance_type  = var.instance_type
+  template       = var.template
+  root_disk_size = var.root_disk_size
+}

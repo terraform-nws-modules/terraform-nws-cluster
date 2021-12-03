@@ -8,6 +8,10 @@ variable "subnet-name" {
   type        = string
 }
 
+variable "instance-name" {
+  type = list(string)
+}
+
 variable "cidr" {
   description = "Your VPC full CIDR"
   type        = string
@@ -16,4 +20,20 @@ variable "cidr" {
 variable "domain" {
   description = "Your VPC network domain"
   type        = string
+}
+
+variable "instance-private-ip" {
+  type = list(string)
+}
+
+variable "instance_type" {
+  type = list(string)
+}
+
+variable "template" {
+  type = list(string)
+}
+
+variable "root_disk_size" {
+  type = list(number)
 }

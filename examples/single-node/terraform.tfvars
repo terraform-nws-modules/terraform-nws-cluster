@@ -1,4 +1,9 @@
-vpc-name    = "vpc-mycorp"
-subnet-name = "mycorp-private"
-cidr        = "10.0.1.0/24"
-domain      = "mycorp.local"
+vpc-name            = "vpc-mycorp"
+subnet-name         = "mycorp-private"
+instance-name       = ["VM0"]
+cidr                = "10.0.1.0/24"
+domain              = "mycorp.local"
+instance-private-ip = ["10.0.1.10"]
+instance_type       = ["t2.micro"]
+root_disk_size      = [10]
+template            = ["Ubuntu 20.04 LTS"]
