@@ -22,6 +22,11 @@ variable "subnet_cidr" {
   type        = list(string)
 }
 
+variable "subnet_public" {
+  description = "Create a public subnet?"
+  type        = bool
+}
+
 variable "domain" {
   description = "Your network domain"
   type        = string

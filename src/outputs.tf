@@ -20,10 +20,10 @@ output "domain" {
 
 output "instance_name" {
   description = "Instance names"
-  value       = module.instance.name
+  value       = module.instance[*].name
 }
 
 output "instance_id" {
   description = "Instance IDs"
-  value       = module.instance.id
+  value       = module.instance[*].id
 }

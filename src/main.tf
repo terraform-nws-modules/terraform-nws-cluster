@@ -24,12 +24,16 @@ module "subnet" {
   cidr   = var.subnet_cidr
   domain = var.domain
   vpc_id = module.vpc.vpc_id
+  public = var.subnet_public
 }
 
 module "instance" {
   source = "github.com/terraform-nws-modules/terraform-nws-instance/src"
 
-  network_id     = module.subnet.id
+  count = length(var.subnet_cidr)
+
+  // FIXME: May create many instances on each subnet  
+  network_id     = module.subnet.id[count.index]
   ip             = var.instance_private_ip
   name           = var.instance_name
   instance_type  = var.instance_type
