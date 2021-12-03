@@ -12,16 +12,18 @@ import (
 )
 
 type TestCaseT struct {
-	testName   string
-	vpcName    string
-	subnetName string
-	instName   []string
-	cidr       string
-	domain     string
-	instIP     []string
-	instType   []string
-	diskSize   []int
-	template   []string
+	testName     string
+	vpcName      string
+	subnetName   []string
+	instName     []string
+	vpcCidr      string
+	subnetCidr   []string
+	subnetPublic bool
+	domain       string
+	instIP       []string
+	instType     []string
+	diskSize     []int
+	template     []string
 }
 
 func config(t *testing.T, cfg TestCaseT, servicePath string) *terraform.Options {
@@ -33,7 +35,9 @@ func config(t *testing.T, cfg TestCaseT, servicePath string) *terraform.Options 
 			"vpc_name":            cfg.vpcName,
 			"subnet_name":         cfg.subnetName,
 			"instance_name":       cfg.instName,
-			"cidr":                cfg.cidr,
+			"vpc_cidr":            cfg.vpcCidr,
+			"subnet_cidr":         cfg.subnetCidr,
+			"subnet_public":       cfg.subnetPublic,
 			"domain":              cfg.domain,
 			"instance_private_ip": cfg.instIP,
 			"instance_type":       cfg.instType,

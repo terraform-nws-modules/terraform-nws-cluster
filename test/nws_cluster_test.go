@@ -16,7 +16,7 @@ func TestNwsClusterExample(t *testing.T) {
 		instType   = "t2.micro"
 		diskSize   = 12
 		template   = "Ubuntu 20.04 LTS"
-		cidr       = "10.0.1.0/24"
+		vpcCidr    = "10.0.1.0/24"
 		domain     = "mycorp.local"
 		vpcName    = "vpc-mycorp"
 		subnetName = "mycorp-private"
@@ -26,9 +26,11 @@ func TestNwsClusterExample(t *testing.T) {
 		{
 			"Single VM",
 			vpcName,
-			subnetName,
+			[]string{"mycorp-private"},
 			[]string{genVMName()},
-			cidr,
+			vpcCidr,
+			[]string{"10.0.1.0/24"},
+			false,
 			domain,
 			[]string{"10.0.1.16"},
 			[]string{instType},
