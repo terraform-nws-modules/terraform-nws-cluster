@@ -1,5 +1,4 @@
 TEST_NAME?=TestNwsClusterExample
-COMMON?=common.go build_helpers.go valid_helpers.go
 TIMEOUT?=3m
 
 show:
@@ -17,11 +16,5 @@ tidy:
 lint:
 	@golint *.go
 
-priv:
-	@go test -v -timeout $(TIMEOUT) $(COMMON) nws_vpc_private_network_test.go
-
-pub:
-	@go test -v -timeout $(TIMEOUT) $(COMMON) nws_vpc_public_network_test.go
-
-full:
-	@go test -v -timeout $(TIMEOUT) $(COMMON) nws_vpc_full_network_test.go
+test:
+	@go test -v -timeout $(TIMEOUT) *.go

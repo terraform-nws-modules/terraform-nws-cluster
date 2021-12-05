@@ -16,16 +16,22 @@ func TestNwsClusterExample(t *testing.T) {
 		{
 			"Single VM",
 			vpcName,
-			[]string{"mycorp-private"},
-			[]string{genVMName()},
 			vpcCidr,
-			[]string{"10.0.1.0/24"},
-			false,
 			domain,
-			[]string{"10.0.1.16"},
+			[]string{"net0-private"},
+			[]string{"10.0.1.0/30"},
+			[]string{"net0-public"},
+			[]string{"10.0.1.10/30"},
+			aclName,
+			[]string{"[0.0.0.0/0", "[1.1.1.1/0"},
+			[]string{"80", "5000-5005", "31000-31002"},
+			true,
+			[]string{genVMName()},
+			[]string{"10.0.1.10"},
 			[]string{instType},
 			[]int{diskSize},
 			[]string{template},
+			keypair,
 		},
 	}
 	for _, testCase := range testCases {
@@ -34,7 +40,7 @@ func TestNwsClusterExample(t *testing.T) {
 		testCase := testCase
 
 		// generate a random service path for each parallel test
-		servicePath := test_structure.CopyTerraformFolderToTemp(t, "../", "examples/single-node")
+		servicePath := test_structure.CopyTerraformFolderToTemp(t, "../", "examples/public-web-server")
 
 		// fork a parallel test with all stages
 		t.Run(testCase.testName, func(t *testing.T) {

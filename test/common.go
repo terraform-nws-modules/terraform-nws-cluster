@@ -1,13 +1,14 @@
 package test
 
 const (
-	instType   = "t2.micro"
-	diskSize   = 12
-	template   = "Ubuntu 20.04 LTS"
-	vpcCidr    = "10.0.1.0/24"
-	domain     = "mycorp.local"
-	vpcName    = "vpc-mycorp"
-	subnetName = "mycorp-private"
+	instType = "t2.micro"
+	diskSize = 12
+	template = "Ubuntu 20.04 LTS"
+	vpcCidr  = "10.0.1.0/24"
+	domain   = "my.local"
+	vpcName  = "vpc-mycorp"
+	keypair  = "bku"
+	aclName  = "my-public-acl"
 )
 
 type testCaseT struct {
@@ -24,10 +25,11 @@ type testCaseT struct {
 	aclCIDRList    []string
 	aclPortList    []string
 
-	instPub  bool
-	instName []string
-	instIP   []string
-	instType []string
-	diskSize []int
-	template []string
+	instPub    bool
+	instName   []string
+	instPrivIP []string
+	instType   []string
+	diskSize   []int
+	template   []string
+	keypair    string
 }

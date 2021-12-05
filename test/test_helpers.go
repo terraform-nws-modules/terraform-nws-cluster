@@ -8,7 +8,6 @@ import (
 
 	"github.com/gruntwork-io/terratest/modules/random"
 	"github.com/gruntwork-io/terratest/modules/terraform"
-	"github.com/stretchr/testify/assert"
 )
 
 func config(t *testing.T, cfg testCaseT, servicePath string) *terraform.Options {
@@ -17,14 +16,16 @@ func config(t *testing.T, cfg testCaseT, servicePath string) *terraform.Options 
 		TerraformDir: servicePath,
 		// Variables to pass to our Terraform code using -var options
 		Vars: map[string]interface{}{
-			"vpc_name":            cfg.vpcName,
-			"subnet_name":         cfg.subnetName,
+			"vpc_name": cfg.vpcName,
+			"vpc_cidr": cfg.vpcCidr,
+			"domain":   cfg.domain,
+
+			"subnet_public_name": cfg.subnetPubName,
+			"subnet_public_cidr": cfg.subnetPubCidr,
+
+			"instance_public":     cfg.instPub,
 			"instance_name":       cfg.instName,
-			"vpc_cidr":            cfg.vpcCidr,
-			"subnet_cidr":         cfg.subnetCidr,
-			"subnet_public":       cfg.subnetPublic,
-			"domain":              cfg.domain,
-			"instance_private_ip": cfg.instIP,
+			"instance_private_ip": cfg.instPrivIP,
 			"instance_type":       cfg.instType,
 			"root_disk_size":      cfg.diskSize,
 			"template":            cfg.template,
@@ -37,14 +38,6 @@ func config(t *testing.T, cfg testCaseT, servicePath string) *terraform.Options 
 
 // validates Terraform output versus expected
 func validate(t *testing.T, opts *terraform.Options, name []string) {
-	out_name := terraform.Output(t, opts, "instance_name")
-	// out_id := terraform.Output(t, opts, "id")
-
-	act_name := strings.Fields(trimBrackets(out_name))
-	// act_id := strings.Fields(trimBrackets(out_id))
-
-	// assert.Equal(t, len(name), len(act_id))
-	assert.ElementsMatch(t, name, act_name)
 }
 
 // Validation helpers
