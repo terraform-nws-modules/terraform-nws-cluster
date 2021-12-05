@@ -22,7 +22,7 @@ module "cluster" {
   subnet_public_cidr = var.subnet_public_cidr
 
   // Instance settings
-  public              = var.public
+  instance_public     = var.instance_public
   instance_name       = var.instance_name
   instance_private_ip = var.instance_private_ip
   instance_type       = var.instance_type

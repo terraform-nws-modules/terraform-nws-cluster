@@ -33,7 +33,7 @@ variable "subnet_public_cidr" {
 # ---------------------------------------------------------------------------------------------------------------------
 # Instance settings
 # ---------------------------------------------------------------------------------------------------------------------
-variable "public" {
+variable "instance_public" {
   description = "Make the instance public ?"
   type        = bool
   default     = false

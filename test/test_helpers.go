@@ -11,22 +11,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-type TestCaseT struct {
-	testName     string
-	vpcName      string
-	subnetName   []string
-	instName     []string
-	vpcCidr      string
-	subnetCidr   []string
-	subnetPublic bool
-	domain       string
-	instIP       []string
-	instType     []string
-	diskSize     []int
-	template     []string
-}
-
-func config(t *testing.T, cfg TestCaseT, servicePath string) *terraform.Options {
+func config(t *testing.T, cfg testCaseT, servicePath string) *terraform.Options {
 
 	return terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		TerraformDir: servicePath,

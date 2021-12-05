@@ -74,7 +74,7 @@ variable "acl_allowed_port_list" {
 # ---------------------------------------------------------------------------------------------------------------------
 # Instance settings
 # ---------------------------------------------------------------------------------------------------------------------
-variable "public" {
+variable "instance_public" {
   description = "Should the instance group be publicly available, e.g created in public subnets ?"
   type        = bool
   default     = false

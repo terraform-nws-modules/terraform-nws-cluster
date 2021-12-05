@@ -42,9 +42,9 @@ module "vpc_networks" {
 // M - number of instances in each subnet
 module "instance" {
   source = "github.com/terraform-nws-modules/terraform-nws-instance/src"
-  count  = var.public ? local.publicLen : local.privateLen
+  count  = var.instance_public ? local.publicLen : local.privateLen
 
-  network_id = var.public ? module.vpc_networks.subnet_public_id[count.index] : module.vpc_networks.subnet_public_id[count.index]
+  network_id = var.instance_public ? module.vpc_networks.subnet_public_id[count.index] : module.vpc_networks.subnet_public_id[count.index]
 
   ip             = var.instance_private_ip
   name           = var.instance_name

@@ -12,17 +12,7 @@ func TestNwsClusterExample(t *testing.T) {
 
 	stage := test_structure.RunTestStage
 
-	const (
-		instType   = "t2.micro"
-		diskSize   = 12
-		template   = "Ubuntu 20.04 LTS"
-		vpcCidr    = "10.0.1.0/24"
-		domain     = "mycorp.local"
-		vpcName    = "vpc-mycorp"
-		subnetName = "mycorp-private"
-	)
-
-	testCases := []TestCaseT{
+	testCases := []testCaseT{
 		{
 			"Single VM",
 			vpcName,
