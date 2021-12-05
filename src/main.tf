@@ -9,22 +9,24 @@ terraform {
   }
 }
 
-module "vpc" {
-  source = "github.com/terraform-nws-modules/terraform-nws-vpc/src"
+module "vpc_networks" {
+  source = "github.com/terraform-nws-modules/terraform-nws-vpc-networks/src"
 
-  name   = var.vpc_name
-  cidr   = var.vpc_cidr
-  domain = var.domain
-}
+  // VPC
+  vpc_name = var.vpc_name
+  vpc_cidr = var.vpc_cidr
+  domain   = var.domain
 
-module "subnet" {
-  source = "github.com/terraform-nws-modules/terraform-nws-subnet/src"
+  // Subnets
+  subnet_private_name = var.subnet_private_name
+  subnet_private_cidr = var.subnet_private_cidr
+  subnet_public_name  = var.subnet_public_name
+  subnet_public_cidr  = var.subnet_public_cidr
 
-  name   = var.subnet_name
-  cidr   = var.subnet_cidr
-  domain = var.domain
-  vpc_id = module.vpc.vpc_id
-  public = var.subnet_public
+  // ACL 
+  acl_name              = var.acl_name
+  acl_allowed_cidr_list = var.acl_allowed_cidr_list
+  acl_allowed_port_list = var.acl_allowed_port_list
 }
 
 module "instance" {
@@ -33,10 +35,12 @@ module "instance" {
   count = length(var.subnet_cidr)
 
   // FIXME: May create many instances on each subnet  
-  network_id     = module.subnet.id[count.index]
+  network_id     = module.vpc_networks.id[count.index]
   ip             = var.instance_private_ip
   name           = var.instance_name
   instance_type  = var.instance_type
   template       = var.template
   root_disk_size = var.root_disk_size
+  keypair        = var.keypair
+
 }

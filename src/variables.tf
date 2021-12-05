@@ -1,49 +1,76 @@
-variable "vpc_name" {
-  description = "Your VPC name"
-  type        = string
-}
-
-variable "subnet_name" {
-  description = "Your private subnet name"
-  type        = list(string)
-}
-
-variable "instance_name" {
-  type = list(string)
-}
-
+# ---------------------------------------------------------------------------------------------------------------------
+# REQUIRED PARAMETERS
+# You must provide a value for each of these parameters.
+# ---------------------------------------------------------------------------------------------------------------------
 variable "vpc_cidr" {
   description = "Your VPC full CIDR"
   type        = string
 }
-
-variable "subnet_cidr" {
-  description = "Your subnets CIDR"
-  type        = list(string)
-}
-
-variable "subnet_public" {
-  description = "Create a public subnet?"
-  type        = bool
+# ---------------------------------------------------------------------------------------------------------------------
+# OPTIONAL PARAMETERS
+# These parameters have reasonable defaults.
+# ---------------------------------------------------------------------------------------------------------------------
+variable "vpc_name" {
+  description = "Your VPC name"
+  type        = string
+  default     = "vpc-mycompany"
 }
 
 variable "domain" {
   description = "Your VPC network domain"
   type        = string
+  default     = "my.local"
 }
 
-variable "instance_private_ip" {
-  type = list(string)
+# ---------------------------------------------------------------------------------------------------------------------
+# Private subnets settings
+# ---------------------------------------------------------------------------------------------------------------------
+variable "subnet_private_name" {
+  description = "Your private subnet name"
+  type        = list(string)
+  default     = null
 }
 
-variable "instance_type" {
-  type = list(string)
+variable "subnet_private_cidr" {
+  description = "Your private subnets CIDR"
+  type        = list(string)
+  default     = null
 }
 
-variable "template" {
-  type = list(string)
+# ---------------------------------------------------------------------------------------------------------------------
+# Public subnets settings
+# ---------------------------------------------------------------------------------------------------------------------
+variable "subnet_public_name" {
+  description = "Your public subnet name"
+  type        = list(string)
+  default     = null
 }
 
-variable "root_disk_size" {
-  type = list(number)
+variable "subnet_public_cidr" {
+  description = "Your public subnets CIDR"
+  type        = list(string)
+  default     = null
 }
+
+variable "acl_name" {
+  description = "Your ACL name"
+  type        = string
+  default     = "my-acl-public"
+}
+
+variable "acl_allowed_cidr_list" {
+  description = "CIDR list for allowed ingress traffic. Allow all ingress traffic by default"
+  type        = list(string)
+  default     = ["0.0.0.0/0"]
+}
+
+variable "acl_allowed_port_list" {
+  description = "Port list for allowed ingress traffic"
+  type        = list(string)
+  default     = ["80", "30000-30001"]
+}
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Instance settings
+# ---------------------------------------------------------------------------------------------------------------------
+
