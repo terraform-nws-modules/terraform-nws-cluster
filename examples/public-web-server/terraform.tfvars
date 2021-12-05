@@ -4,6 +4,7 @@ domain             = "my.local"
 subnet_public_name = ["net0-public", "net1-public"]
 subnet_public_cidr = ["10.0.1.20/30", "10.0.1.30/30"]
 
+public              = true
 instance_name       = ["VM0"]
 instance_private_ip = ["10.0.1.10"]
 instance_type       = ["t2.micro"]

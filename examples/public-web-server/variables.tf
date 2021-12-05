@@ -33,6 +33,12 @@ variable "subnet_public_cidr" {
 # ---------------------------------------------------------------------------------------------------------------------
 # Instance settings
 # ---------------------------------------------------------------------------------------------------------------------
+variable "public" {
+  description = "Make the instance public ?"
+  type        = bool
+  default     = false
+}
+
 variable "instance_private_ip" {
   type    = list(string)
   default = ["10.0.1.10"]
