@@ -13,13 +13,16 @@ terraform {
 module "cluster" {
   source = "../../src"
 
-  vpc_name            = var.vpc_name
-  subnet_name         = var.subnet_name
+  // Networking settings
+  vpc_name = var.vpc_name
+  vpc_cidr = var.vpc_cidr
+  domain   = var.domain
+
+  subnet_public_name = var.subnet_public_name
+  subnet_public_cidr = var.subnet_public_cidr
+
+  // Instance settings
   instance_name       = var.instance_name
-  vpc_cidr            = var.vpc_cidr
-  subnet_cidr         = var.subnet_cidr
-  subnet_public       = var.subnet_public
-  domain              = var.domain
   instance_private_ip = var.instance_private_ip
   instance_type       = var.instance_type
   template            = var.template

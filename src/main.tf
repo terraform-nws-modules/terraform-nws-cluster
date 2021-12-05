@@ -9,6 +9,14 @@ terraform {
   }
 }
 
+locals {
+  privateLen = var.subnet_private_cidr != null ? length(var.subnet_private_cidr) : 0
+  publicLen  = var.subnet_public_cidr != null ? length(var.subnet_public_cidr) : 0
+}
+
+// Create up to 4 independend subnets in the VPC
+// Up to 2 private subnets (VPN)
+// Up to 2 public subnets
 module "vpc_networks" {
   source = "github.com/terraform-nws-modules/terraform-nws-vpc-networks/src"
 
@@ -29,18 +37,18 @@ module "vpc_networks" {
   acl_allowed_port_list = var.acl_allowed_port_list
 }
 
+// Create a N*M instances, where 
+// N - number of public/private subnets
+// M - number of instances in each subnet
 module "instance" {
   source = "github.com/terraform-nws-modules/terraform-nws-instance/src"
+  count  = var.public ? local.publicLen : local.privateLen
 
-  count = length(var.subnet_cidr)
+  network_id = var.public ? module.vpc_networks.subnet_public_id[count.index] : module.vpc_networks.subnet_public_id[count.index]
 
-  // FIXME: May create many instances on each subnet  
-  network_id     = module.vpc_networks.id[count.index]
   ip             = var.instance_private_ip
   name           = var.instance_name
   instance_type  = var.instance_type
   template       = var.template
   root_disk_size = var.root_disk_size
-  keypair        = var.keypair
-
 }

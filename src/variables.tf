@@ -6,6 +6,7 @@ variable "vpc_cidr" {
   description = "Your VPC full CIDR"
   type        = string
 }
+
 # ---------------------------------------------------------------------------------------------------------------------
 # OPTIONAL PARAMETERS
 # These parameters have reasonable defaults.
@@ -73,4 +74,34 @@ variable "acl_allowed_port_list" {
 # ---------------------------------------------------------------------------------------------------------------------
 # Instance settings
 # ---------------------------------------------------------------------------------------------------------------------
+variable "public" {
+  description = "Should the instance group be publicly available, e.g created in public subnets ?"
+  type        = bool
+  default     = false
+}
 
+variable "instance_name" {
+  description = "Your instance name list"
+  type        = list(string)
+  default     = ["VM0"]
+}
+
+variable "instance_private_ip" {
+  type    = list(string)
+  default = ["10.0.1.10"]
+}
+
+variable "instance_type" {
+  type    = list(string)
+  default = ["t2.micro"]
+}
+
+variable "template" {
+  type    = list(string)
+  default = ["Ubuntu 20.04 LTS"]
+}
+
+variable "root_disk_size" {
+  type    = list(number)
+  default = [10]
+}

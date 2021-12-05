@@ -3,17 +3,17 @@
 # ---------------------------------------------------------------------------------------------------------------------
 output "vpc_public_ip" {
   description = "VPC Public IP"
-  value       = module.vpc_networks.vpc_public_ip
+  value       = module.cluster.vpc_public_ip
 }
 
 output "vpc_id" {
   description = "VPC internal ID"
-  value       = module.vpc_networks.vpc_id
+  value       = module.cluster.vpc_id
 }
 
 output "domain" {
   description = "Subnet domain"
-  value       = module.vpc_networks.domain
+  value       = module.cluster.domain
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -21,22 +21,22 @@ output "domain" {
 # ---------------------------------------------------------------------------------------------------------------------
 output "subnet_private_id" {
   description = "UUID list of your private subnets"
-  value       = module.vpc_networks.subnet_private_id
+  value       = module.cluster.subnet_private_id
 }
 
 output "subnet_public_id" {
   description = "UUID list of your public subnets"
-  value       = module.vpc_networks.subnet_public_id
+  value       = module.cluster.subnet_public_id
 }
 
 output "subnet_public_acl_id" {
   description = "ACL ID list for your public subnets"
-  value       = module.vpc_networks.subnet_public_acl_id
+  value       = module.cluster.subnet_public_acl_id
 }
 
 output "subnet_public_acl_rule_id" {
   description = "ACL Rule ID list for your public subnets"
-  value       = module.vpc_networks.subnet_public_acl_rule_id
+  value       = module.cluster.subnet_public_acl_rule_id
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -44,10 +44,10 @@ output "subnet_public_acl_rule_id" {
 # ---------------------------------------------------------------------------------------------------------------------
 output "instance_name" {
   description = "Instance names"
-  value       = module.instance[*].name
+  value       = module.cluster.instance_name
 }
 
 output "instance_id" {
   description = "Instance IDs"
-  value       = module.instance[*].id
+  value       = module.cluster.instance_id
 }
